@@ -1,4 +1,5 @@
 import tkinter as tk
+
 from core import Table
 
 
@@ -7,7 +8,9 @@ class GUI:
         self.fenetre = tk.Tk()
         self.size = 600
         self.n = 3
-        self.Canvas = tk.Canvas(self.fenetre, width=self.size, height=self.size, bg="white")
+        self.Canvas = tk.Canvas(
+            self.fenetre, width=self.size, height=self.size, bg="white"
+        )
         self.table = Table(self.n)
 
         self.draw()
@@ -15,7 +18,9 @@ class GUI:
         button = tk.Button(self.fenetre, text="reset", command=self.reset)
         button.pack()
 
-        exit_button = tk.Button(self.fenetre, text="Exit", command=lambda: self.fenetre.quit())
+        exit_button = tk.Button(
+            self.fenetre, text="Exit", command=lambda: self.fenetre.quit()
+        )
         exit_button.pack()
 
         self.Canvas.bind("<Button-1>", self.clic)
@@ -30,11 +35,19 @@ class GUI:
         for i in range(self.n):
             for j in range(self.n):
                 if self.table[i, j] == 1:
-                    self.Canvas.create_line(l * i + 30, l * j + 30, l * i + 170, l * j + 170)
-                    self.Canvas.create_line(l * i + 170, l * j + 30, l * i + 30, l * j + 170)
+                    self.Canvas.create_line(
+                        l * i + 30, l * j + 30, l * i + 170, l * j + 170
+                    )
+                    self.Canvas.create_line(
+                        l * i + 170, l * j + 30, l * i + 30, l * j + 170
+                    )
                 if self.table[i, j] == -1:
                     self.Canvas.create_oval(
-                        i * l + 6, j * l + 6, (i + 1) * l - 6, (j + 1) * l - 6, fill="white"
+                        i * l + 6,
+                        j * l + 6,
+                        (i + 1) * l - 6,
+                        (j + 1) * l - 6,
+                        fill="white",
                     )
 
     def clic(self, event):
@@ -53,11 +66,13 @@ class GUI:
                 text=f"The winner is player {'X' if winner==1 else 'O'} !",
                 fill="black",
                 font=("Helvetica 30 bold"),
-        )
+            )
 
     def reset(self):
         self.Canvas.delete("all")
         self.table.reset()
         self.draw()
 
-GUI()
+
+if __name__ == "__main__":
+    GUI()
