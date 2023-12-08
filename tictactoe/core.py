@@ -32,7 +32,7 @@ class Table:
         return 0
 
     def play(self, x, y):
-        if x >= self.size or y >= self.size:
+        if x >= self.size or y >= self.size or x < 0 or y < 0:
             raise ValueError("Coordinates given are out of bounds.")
         if self.board[x][y] != 0:
             raise ValueError("Selected cell is not empty.")
