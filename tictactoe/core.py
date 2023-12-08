@@ -40,3 +40,7 @@ class Table:
     def reset(self):
         self.board = np.zeros((self.size, self.size))
         self.player = 1
+
+    def __getitem__(self, indices):
+        row, col = indices
+        return self.board[row][col]
